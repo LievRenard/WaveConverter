@@ -6,7 +6,7 @@ class Program {
         double c = 3e8;
 
         string cmd = string.Join(' ',args);
-        string pattern = "([0-9])?[.]?[0-9]+([eE][+-]?[0-9]+)? *((nm)|(rad[/]s)|(Hz)|(rad[/]cm))";
+        string pattern = "([0-9])?[.]?[0-9]+([eE][+-]?[0-9]+)? *((nm)|(rad[/]s)|(Hz)|(rad[/]cm)|(eV))";
 
         if (!Regex.IsMatch(cmd, pattern)) {
             Console.WriteLine("Command Cannot Be Interpreted.");
@@ -14,7 +14,7 @@ class Program {
         }
 
         cmd = Regex.Match(cmd,pattern).Value;
-        string unit = Regex.Match(cmd,"(nm)|(rad[/]s)|(Hz)|(rad[/]cm)").Value;
+        string unit = Regex.Match(cmd,"(nm)|(rad[/]s)|(Hz)|(rad[/]cm)|(eV)").Value;
         double val = double.Parse(Regex.Match(cmd,"([0-9])?[.]?[0-9]+([eE][+-]?[0-9]+)?").Value);
         switch (unit)
         {
@@ -25,6 +25,7 @@ class Program {
                 Console.WriteLine("ω = {0:e2} rad/s",2*pi*c/val);
                 if (2*pi/val/100 < 5000) {Console.WriteLine("k = {0:f2} rad/cm",2*pi/val/100);}
                 else {Console.WriteLine("k = {0:f2} rad/μm",2*pi/val/1e6);}
+                Console.WriteLine("E = {0:f2} eV",1239.8/val/1e9);
                 break;
             case "rad/s":
                 Console.WriteLine("Converted :");
@@ -33,6 +34,7 @@ class Program {
                 Console.WriteLine("f = {0:e2} Hz",val/2/pi);
                 if (val/c/100 < 5000) {Console.WriteLine("k = {0:f2} rad/cm",val/c/100);}
                 else {Console.WriteLine("k = {0:f2} rad/μm",val/c/1e6);}
+                Console.WriteLine("E = {0:f2} eV",1239.8/(2*pi*c/val*1e9));
                 break;
             case "Hz":
                 Console.WriteLine("Converted :");
@@ -41,6 +43,7 @@ class Program {
                 Console.WriteLine("ω = {0:e2} rad/s",val*2*pi);
                 if (2*pi*val/c/100 < 5000) {Console.WriteLine("k = {0:f2} rad/cm",2*pi*val/c/100);}
                 else {Console.WriteLine("k = {0:f2} rad/μm",2*pi*val/c/1e6);}
+                Console.WriteLine("E = {0:f2} eV",1239.8/(c/val*1e9));
                 break;
             case "rad/cm":
                 Console.WriteLine("Converted :");
@@ -49,6 +52,17 @@ class Program {
                 else {Console.WriteLine("λ = {0:f2} μm",2*pi/val*1e6);}
                 Console.WriteLine("f = {0:e2} Hz",c*val/2/pi);
                 Console.WriteLine("ω = {0:e2} rad/s",c*val);
+                Console.WriteLine("E = {0:f2} eV",1239.8/(2*pi/val*1e9));
+                break;
+            case "eV":
+                Console.WriteLine("Converted :");
+                if (1239.8/val < 2000) {Console.WriteLine("λ = {0:f2} nm",1239.8/val);}
+                else {Console.WriteLine("λ = {0:f2} μm",1239.8/val*1e-3);}
+                val = 1239.8/val*1e-9;
+                Console.WriteLine("f = {0:e2} Hz",c/val);
+                Console.WriteLine("ω = {0:e2} rad/s",2*pi*c/val);
+                if (2*pi/val/100 < 5000) {Console.WriteLine("k = {0:f2} rad/cm",2*pi/val/100);}
+                else {Console.WriteLine("k = {0:f2} rad/μm",2*pi/val/1e6);}
                 break;
             default:
                 Console.WriteLine("Command Cannot Be Interpreted.");
