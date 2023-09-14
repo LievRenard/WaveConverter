@@ -3,14 +3,14 @@
 <img src="https://img.shields.io/badge/.Net-512BD4?style=for-the-badge&logo=dotnet&logoColor=white">
 <img src="https://img.shields.io/badge/CSharp-239120?style=for-the-badge&logo=csharp&logoColor=white">
 
-A program of optical value conversion among light wavelength, frequency, angular frequency, angular wavenumber and photon energy.
+A program of optical value conversion among light wavelength, frequency, angular frequency, angular/linear wavenumber and photon energy.
 
 ## Installation
 
-1. Download **WaveConverterInstaller.ps1** in release.
-2. Move the installer file to where you want.
-3. Open windows terminal, or powershell at the desired folder.
-4. Execute **WaveConverterInstaller.ps1** in terminal.
+1. Download **WaveConverterInstaller.zip** in release.
+2. Extract zip file to where you want.
+3. Execute **WaveConverterAliasSetting.ps1** in terminal.
+4. Restart terminal.
 
 ## Usage
 
