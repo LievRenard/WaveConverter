@@ -16,11 +16,24 @@ A program of optical value conversion among light wavelength, frequency, angular
 
 `conv <value> <unit>`
 
-\<value\> - The value you want to convert.
+\<value\> - The value you want to convert. Scientific notation is also allowed.
 
-\<unit\> - The unit you want to convert. "nm" for wavelength, "Hz" for frequency, "rad/s" for angular frequency, "rad/cm" for angular wavenumber, and "eV" for photon energy. Capital and small letters should be distinguished.
+\<unit\> - The unit you want to convert. Capital and small letters should be distinguished.
+
+**Supported Units**
+
+- Wavelength - nm, um 
+- Frequency - Hz, THz
+- Angular Frequency - rad/s
+- Angular Wavelength - rad/cm, rad/um
+- Linear Wavelength - cm-1
+- Photon Energy - eV
 
 **There can be blank spaces between \<value\> and \<unit\>, or no blank space.*
+
+`conv --help or -h`
+
+Prints help page for WaveConverter.
 
 ### Example
 
