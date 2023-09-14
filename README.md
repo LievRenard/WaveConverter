@@ -12,6 +12,10 @@ A program of optical value conversion among light wavelength, frequency, angular
 3. Execute **WaveConverterAliasSetting.ps1** in terminal.
 4. Restart terminal.
 
+**To Update Program**
+
+Just change old files in the folder that WaveConverter installed, to new files.
+
 ## Usage
 
 `conv <value> <unit>`
