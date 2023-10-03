@@ -29,8 +29,8 @@ Just change old files in the folder that WaveConverter installed, to new files.
 - Wavelength - nm, um 
 - Frequency - Hz, THz
 - Angular Frequency - rad/s
-- Angular Wavelength - rad/cm, rad/um
-- Linear Wavelength - cm-1
+- Angular Wavenumber - rad/cm, rad/um
+- Linear Wavenumber - cm-1
 - Photon Energy - eV
 
 **There can be blank spaces between \<value\> and \<unit\>, or no blank space.*
