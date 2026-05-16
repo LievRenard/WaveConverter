@@ -13,6 +13,7 @@ enum Unit {
     Um,
     Mm,
     Cm,
+    A,
     M,
     Hz,
     MHz,
@@ -23,6 +24,7 @@ enum Unit {
     RadPerCm,
     RadPerUm,
     InvCm,
+    InvUm,
     EV,
 }
 
@@ -35,6 +37,7 @@ impl FromStr for Unit {
             "um" => Ok(Unit::Um),
             "mm" => Ok(Unit::Mm),
             "cm" => Ok(Unit::Cm),
+            "A" => Ok(Unit::A),
             "m" => Ok(Unit::M),
             "Hz" => Ok(Unit::Hz),
             "MHz" => Ok(Unit::MHz),
@@ -45,6 +48,7 @@ impl FromStr for Unit {
             "rad/cm" => Ok(Unit::RadPerCm),
             "rad/um" => Ok(Unit::RadPerUm),
             "cm-1" | "cm^-1" => Ok(Unit::InvCm),
+            "um-1" | "um^-1" => Ok(Unit::InvUm),
             "eV" => Ok(Unit::EV),
             _ => Err(format!("ERROR: Unknown Unit: {}", s)),
         }
@@ -55,9 +59,10 @@ impl fmt::Display for Unit {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         let s = match self {
             Unit::Nm => "nm",
-            Unit::Um => "um",
+            Unit::Um => "μm",
             Unit::Mm => "mm",
             Unit::Cm => "cm",
+            Unit::A => "Å",
             Unit::M => "m",
             Unit::Hz => "Hz",
             Unit::MHz => "MHz",
@@ -66,8 +71,9 @@ impl fmt::Display for Unit {
             Unit::RadPerSec => "rad/s",
             Unit::RadPerM => "rad/m",
             Unit::RadPerCm => "rad/cm",
-            Unit::RadPerUm => "rad/um",
-            Unit::InvCm => "cm^-1",
+            Unit::RadPerUm => "rad/μm",
+            Unit::InvCm => "cm⁻¹",
+            Unit::InvUm => "μm⁻¹",
             Unit::EV => "eV",
         };
 
@@ -91,6 +97,7 @@ impl Quantity {
             Unit::Um => self.value*1e-6,
             Unit::Mm => self.value*1e-3,
             Unit::Cm => self.value*1e-2,
+            Unit::A => self.value*1e-10,
             Unit::M => self.value,
             Unit::Hz => C/self.value,
             Unit::MHz => C/(self.value*1e6),
@@ -101,6 +108,7 @@ impl Quantity {
             Unit::RadPerCm => (2.0*PI)/(self.value/1e-2),
             Unit::RadPerUm => (2.0*PI)/(self.value/1e-6),
             Unit::InvCm => 1.0/(self.value/1e-2),
+            Unit::InvUm => 1.0/(self.value/1e-6),
             Unit::EV => (NMEV/self.value)*1e-9,
         };
 
@@ -114,6 +122,7 @@ impl Quantity {
             Unit::Um => value/1e-6,
             Unit::Mm => value/1e-3,
             Unit::Cm => value/1e-2,
+            Unit::A => value/1e-10,
             Unit::M => value,
             Unit::Hz => C/value,
             Unit::MHz => C/value/1e6,
@@ -124,6 +133,7 @@ impl Quantity {
             Unit::RadPerCm => (2.0*PI)/value*1e-2,
             Unit::RadPerUm => (2.0*PI)/value*1e-6,
             Unit::InvCm => 1.0/value*1e-2,
+            Unit::InvUm => 1.0/value*1e-6,
             Unit::EV => NMEV/(value/1e-9),
         };
 
