@@ -4,7 +4,7 @@ Light wave quantity converter. Convert a quantity among wavelength, wavenumber, 
 ### Supported Units
 - Wavelength: m, cm, mm, um, nm, A
 - Frequency: Hz, GHz, THz, rad/s
-- Wavenumber: cm^-1(cm-1), um-1(um^-1) rad/m, rad/cm, rad/um
+- Wavenumber: cm^-1(cm-1), um-1(um^-1), rad/m, rad/cm, rad/um
 - Energy: eV
 
 ### Usage
